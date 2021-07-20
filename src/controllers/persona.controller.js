@@ -1,37 +1,35 @@
-import { response } from 'express'
-import {pool} from '../database'
+import { pool } from '../database'
 const helpers = require('../libs/helpers');
-export const readAllPersonas = async(req , res ) => {
+
+
+export const readAllPersona = async(req, res)=>{
     try {
         const response = await pool.query('select * from persona');
         return res.status(200).json(response.rows);
     } catch (e) {
         console.log(e);
-        return res.status(500).json('Internal Server Error...');
+        return res.status(500).json('Internal Server error...!');
     }
-}
-
-export const delPersona = async (req , res) => {
-    try {
-        const id = parseInt(req.params.id);
-        const response = await pool.query('delete from persona where idpersona=$1', [id]);
-        return res.status(200).json(
-        `La persona  ${id} ha sido eliminado correctamente...!`
-        );
-
-    } catch (e) {
-        console.log(e);
-        return res.status(500).json('Internal Server Error...');
-    }
-
 }
 
 export const createPersona = async(req, res)=>{
     try {
-        const{ nombre, apellido , telefono} = req.body;
-        await pool.query('insert into persona(nombre, apellido, telefon) values($1,$2, $3)', [nombre, apellido ,telefono]);
+        const{ nombres, apellidos, telefono   } = req.body;
+        await pool.query('INSERT INTO persona ( nombres,apellidos,telefono) values($1,$2,$3)', [ nombres, apellidos,telefono]);
         return res.status(200).json(
-            `La persona  ${ nombre } ha sido creado correctamente...!`);
+            `Usuario ${ nombres } creado correctamente...!`);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json('Internal Server error...!');
+    }
+}
+
+export const delPersona = async(req, res)=>{
+    try {
+        const id = parseInt(req.params.id);
+        const response = await pool.query('delete from persona where idpersona=$1', [id]);
+        return res.status(200).json(
+            `Usuario ${ id } eliminado correctamente...!`);
     } catch (e) {
         console.log(e);
         return res.status(500).json('Internal Server error...!');

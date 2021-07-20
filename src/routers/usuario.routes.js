@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 const router = Router();
 
-import * as userCtr from '../controllers/user.controller'
+import * as userCtr from '../controllers/usuario.controller'
 const { checkToken } = require('../oauth/token_validation');
 
 router.get('/' ,  userCtr.readAllUsers);

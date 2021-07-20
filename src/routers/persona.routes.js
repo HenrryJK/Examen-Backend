@@ -2,10 +2,10 @@ import { Router } from 'express';
 const router = Router();
 
 import * as PersonaCtr from '../controllers/persona.controller'
-const { checkToken } = require('../auth/token_validation.js');
+const { checkToken } = require('../oauth/token_validation');
 
-router.get('/' ,  PersonaCtr.readAllPersonas);
+router.get('/' ,  PersonaCtr.readAllPersona);
 router.delete('/delete/:id' ,PersonaCtr.delPersona);
-router.post('/add',checkToken ,PersonaCtr.createPersona );
+router.post('/add',PersonaCtr.createPersona );
 
 export default router;
