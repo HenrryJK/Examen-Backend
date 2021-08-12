@@ -2,8 +2,8 @@
 import express from 'express'
 import morgan from 'morgan'
 import authRoutes from './routers/auth.routes'
-import userRoutes from './routers/user.routes'
-import mailRoutes from './routers/email.routes'
+import userRoutes from './routers/usuario.routes'
+import emailRoutes from './routers/email.routes'
 import perRoutes from './routers/persona.routes'
 import archiRoutes from './routers/archivo.routes'
 
@@ -20,7 +20,7 @@ app.get('/',function(req, res, next){
 });
 app.use('/api/auth', authRoutes);
 app.use('/api/auth/users', userRoutes);
-app.use('/api/auth/mail', mailRoutes);
+app.use('/api/auth/mail', emailRoutes);
 app.use('/api/auth/persona',perRoutes);
 app.use('/api/auth/archivos',archiRoutes)
 

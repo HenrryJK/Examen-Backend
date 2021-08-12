@@ -4,7 +4,7 @@ const helpers = require('../libs/helpers');
 
 export const readAllUsers = async(req, res)=>{
     try {
-        const response = await pool.query('select u.idusuario,u.username, p.nombres, p.apellidos, a.url from usuario u left join persona as p on u.idpersona = p.idpersona left join archivos as a on a.idusuario = u.idusuario;');
+        const response = await pool.query('select u.idusuario,u.username, p.nombre, p.apellido, a.url from usuario u left join persona as p on u.idpersona = p.idpersona left join archivos as a on a.idusuario = u.idusuario;');
         return res.status(200).json(response.rows);
     } catch (e) {
         console.log(e);
@@ -48,9 +48,9 @@ export const updateUser = async(req, res)=>{
 }
 export const createUser = async(req, res)=>{
     try {
-        const{ password, username, estado, idpersona   } = req.body;
+        const{ password, username, idpersona } = req.body;
         const password2 = await helpers.encryptPassword(password);
-        await pool.query('insert into usuario (password,username,idpersona, estado) values($1,$2,$3,1)', [ password2,username,estado,idpersona]);
+        await pool.query('insert into usuario (username,password,idpersona, estado) values($1,$2,$3,1)', [username, password2,idpersona]);
         return res.status(200).json(
             `Usuario ${ username } creado correctamente...!`);
     } catch (e) {

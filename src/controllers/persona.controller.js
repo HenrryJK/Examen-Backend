@@ -14,10 +14,10 @@ export const readAllPersona = async(req, res)=>{
 
 export const createPersona = async(req, res)=>{
     try {
-        const{ nombres, apellidos, telefono   } = req.body;
-        await pool.query('INSERT INTO persona ( nombres,apellidos,telefono) values($1,$2,$3)', [ nombres, apellidos,telefono]);
+        const{ nombre, apellido, telefono   } = req.body;
+        await pool.query('INSERT INTO persona ( nombre,apellido,telefono) values($1,$2,$3)', [ nombre, apellido,telefono]);
         return res.status(200).json(
-            `Usuario ${ nombres } creado correctamente...!`);
+            `Usuario ${ nombre } creado correctamente...!`);
     } catch (e) {
         console.log(e);
         return res.status(500).json('Internal Server error...!');

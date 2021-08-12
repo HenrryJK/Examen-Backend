@@ -2,7 +2,7 @@ import { Router } from 'express';
 const router = Router();
 
 import * as PersonaCtr from '../controllers/persona.controller'
-const { checkToken } = require('../oauth/token_validation');
+const { checkToken } = require('../auth/token_validation');
 
 router.get('/' ,  PersonaCtr.readAllPersona);
 router.delete('/delete/:id' ,PersonaCtr.delPersona);

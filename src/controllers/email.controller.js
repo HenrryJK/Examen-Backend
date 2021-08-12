@@ -6,7 +6,7 @@ export const email = async(req, res)=>{
         const{ destinatario,titulo,mensaje,fecha,idusuario} = req.body;
         await transporter.sendMail({
             from: '"Desarrollo Aplicaciones Distribuidad ☻" <henrry24orbezo@gmail.com>', // sender address
-            to: destinario, // list of receivers
+            to: destinatario, // list of receivers
             subject: titulo, // Subject line
             html: "<b>"+mensaje+"</b>", // html body
           });
